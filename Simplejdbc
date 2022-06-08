@@ -1,0 +1,13 @@
+ public static void main(String[] args)throws Exception{
+        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+        Connection conn=DriverManager.getConnection("jdbc:mysql:///spring01?useUnicode=true&charsetEncode=utf8&serverTimezo",
+                "name","password");
+        PreparedStatement pstm=conn.prepareStatement("select * from account");
+        ResultSet rs=pstm.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getString("name"));
+        }
+        rs.close();
+        pstm.close();
+        conn.close();
+    }
